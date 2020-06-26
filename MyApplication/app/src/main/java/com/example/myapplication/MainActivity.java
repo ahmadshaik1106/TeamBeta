@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 textView2.setText(pojo.getEmail());
                 textView3.setText(pojo.getPhone());
             }
-
+////////////////////////////////////it is a comment 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "LOL", Toast.LENGTH_SHORT).show();

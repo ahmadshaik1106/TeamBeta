@@ -1,11 +1,11 @@
 package com.example.myapplication;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,50 +16,44 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
-    TextView textView,textView2,textView3;
+public class Update extends AppCompatActivity {
+    EditText name1,phone1;
+    TextView email1;
     FirebaseAuth mAuth;
-    DatabaseReference reference ;
+    DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_update);
+        name1 = findViewById(R.id.name);
+        phone1=findViewById(R.id.phone);
+        email1=findViewById(R.id.email);
         mAuth = FirebaseAuth.getInstance();
-        textView= findViewById(R.id.textView);
-        textView2=findViewById(R.id.textView2);
-        textView3=findViewById(R.id.textView3);
-        mAuth = FirebaseAuth.getInstance();
-        firebaseDatabase=FirebaseDatabase.getInstance();
+        firebaseDatabase= FirebaseDatabase.getInstance();
         reference=firebaseDatabase.getReference().child("Users").child(mAuth.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Pojo pojo = snapshot.getValue(Pojo.class);
-                textView.setText(pojo.getName());
-                textView2.setText(pojo.getEmail());
-                textView3.setText(pojo.getPhone());
+                name1.setText(pojo.getName());
+                email1.setText(pojo.getEmail());
+                phone1.setText(pojo.getPhone());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "LOL", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Update.this, "LOL", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
-
-
-
-    public void signout(View view) {
-
-        mAuth.signOut();
-        startActivity(new Intent(getApplicationContext(),Home.class));
-
-    }
-
-    public void edit(View view) {
-        startActivity(new Intent(getApplicationContext(),Update.class));
+    public void update(View view) {
+        String name = name1.getText().toString();
+        String phone = phone1.getText().toString();
+        String email = email1.getText().toString();
+        Pojo pojo =new Pojo(name,phone,email);
+        reference.setValue(pojo);
+        finish();
     }
 }

@@ -2,3 +2,7 @@ Firebase Authentication
 Firebase Database
 Retrofit
 Material Design
+Fragments
+Bottom navigation bar
+SwipeRefreshLayout
+RecyclerView

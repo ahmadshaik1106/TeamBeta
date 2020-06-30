@@ -2,7 +2,7 @@ Firebase Authentication
 Firebase Database
 Retrofit
 Material Design
-Fragments
-Bottom navigation bar
+TabLayout with Fragments
+BottomNavigationBar
 SwipeRefreshLayout
 RecyclerView

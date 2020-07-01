@@ -29,8 +29,7 @@ public class LoginScreen extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         mLoadingBar=new ProgressDialog(LoginScreen.this);
-        if (mAuth.getCurrentUser()!=null){ startActivity(new Intent(this,MainActivity.class)); finish(); }
-
+        if (mAuth.getCurrentUser()!=null){ startActivity(new Intent(this,MainActivity.class));finish(); }
 
     }
 
@@ -71,13 +70,15 @@ public class LoginScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
+                            mLoadingBar.dismiss();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             Toast.makeText(LoginScreen.this, "Logged in succssfully", Toast.LENGTH_SHORT).show();
-
+                            finish();
                         } else {
-
-                            Toast.makeText(LoginScreen.this, "User is not available for the following configuration", Toast.LENGTH_SHORT).show();
+                            mLoadingBar.dismiss();
+                            inputEmail.setText("");
+                            inputPassword.setText("");
+                            Toast.makeText(LoginScreen.this, "User does not exist", Toast.LENGTH_SHORT).show();
 
                         }
 

@@ -1,5 +1,6 @@
 package com.example.newsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -39,6 +40,8 @@ public class ResetScreen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(ResetScreen.this, "Password is sent to your gmail", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ResetScreen.this,LoginScreen.class));
+                            finish();
                         }
                     }
                 });

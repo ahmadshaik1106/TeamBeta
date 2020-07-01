@@ -55,6 +55,6 @@ public class UpdateScreen extends AppCompatActivity {
         String email = email1.getText().toString();
         Pojo pojo =new Pojo(name,phone,email);
         reference.setValue(pojo);
-        finish();
+//        finish();
     }
 }

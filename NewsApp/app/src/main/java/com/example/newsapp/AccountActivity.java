@@ -66,17 +66,17 @@ public class AccountActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mLoadingBar.setTitle("Fetching Details ");
         mLoadingBar.setMessage("please wait...");
-        mLoadingBar.setCanceledOnTouchOutside(true);
         mLoadingBar.show();
         reference = firebaseDatabase.getReference().child("Users").child(mAuth.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mLoadingBar.dismiss();
                 Pojo pojo = snapshot.getValue(Pojo.class);
                 textView.setText(pojo.getName());
                 textView2.setText(pojo.getPhone());
                 textView3.setText(pojo.getEmail());
-                toptext.setText("Hi, "+pojo.getName());
+                toptext.setText("Hello, "+pojo.getName());
             }
 
             @Override
@@ -95,6 +95,7 @@ public class AccountActivity extends AppCompatActivity {
         mAuth.signOut();
         startActivity(new Intent(getApplicationContext(),LoginScreen.class));
         finish();
+//
     }
 
 

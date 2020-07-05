@@ -80,12 +80,12 @@ public class RegisterScreen extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Pojo pojo = new Pojo(n,p,email);
                                 reference.child(FirebaseAuth.getInstance().getUid()).setValue(pojo);
-<<<<<<< HEAD
+
                                 mLoadingBar.dismiss();
-=======
+
                                 mAuth.signOut();
                                 startActivity(new Intent(getApplicationContext(), LoginScreen.class));
->>>>>>> ce52160a65b24e6f5f7017cab37105a42c8a3897
+
                                 Toast.makeText(RegisterScreen.this, "Registered Done Please Login", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {

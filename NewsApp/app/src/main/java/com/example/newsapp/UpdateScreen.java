@@ -55,6 +55,7 @@ public class UpdateScreen extends AppCompatActivity {
         String email = email1.getText().toString();
         Pojo pojo =new Pojo(name,phone,email);
         reference.setValue(pojo);
+        Toast.makeText(UpdateScreen.this, "details updated", Toast.LENGTH_SHORT).show();
 //        finish();
     }
 }
